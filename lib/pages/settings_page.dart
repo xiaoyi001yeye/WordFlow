@@ -416,57 +416,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
                   const SizedBox(height: 16),
 
-                  // 关于部分
-                  _buildSectionHeader('关于'),
-                  _buildSettingsCard([
-                    _buildCompactListTile(
-                      leading: const Icon(Icons.system_update_outlined),
-                      title: _appVersion,
-                      subtitle: '点击检查更新',
-                      onTap: _checkForUpdates,
-                    ),
-                    _buildCompactListTile(
-                      leading: const Icon(Icons.feedback_outlined),
-                      title: '意见反馈',
-                      subtitle: '请前往 Github 提 issue',
-                      onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Row(
-                              children: [
-                                Icon(
-                                  Icons.catching_pokemon_outlined,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                  child: Text(
-                                    '这是一个彩蛋...',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Theme.of(context).brightness == Brightness.dark
-                                            ? Colors.white
-                                            : Colors.black87
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            backgroundColor: Theme.of(context).brightness == Brightness.dark
-                                ? AppTheme.coolGray600
-                                : AppTheme.coolGray300,
-                            behavior: SnackBarBehavior.floating,
-                            margin: const EdgeInsets.all(16),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            duration: const Duration(seconds: 2),
-                          ),
-                        );
-                      },
-                    ),
-                  ]),
+                  
                 ],
               ),
             ),
