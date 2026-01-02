@@ -15,7 +15,7 @@ permissions:
 on:
   push:
     branches:
-      - 'feat/add-login-page'
+      - 'feat/add-login-page*'
   workflow_dispatch:  # 允许手动触发
 
 jobs:
