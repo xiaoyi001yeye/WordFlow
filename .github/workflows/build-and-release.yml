@@ -67,7 +67,7 @@ jobs:
         path: build/app/outputs/flutter-apk/app-release.apk
 
   build-linux:
-    runs-on: ubuntu-20.04
+    runs-on: 'ubuntu-latest'
 
     steps:
     - name: Checkout code
