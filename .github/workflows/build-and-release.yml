@@ -19,6 +19,7 @@ on:
       - 'feat/add-login-page-fix'
       - 'feat/add-login-page-workflow-fix'
       - 'feat/linux-build'
+      - 'linux-build'
   workflow_dispatch:  # 允许手动触发
 
 jobs:
