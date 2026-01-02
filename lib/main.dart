@@ -12,6 +12,7 @@ import 'utils/learning_data_service.dart';
 import 'utils/settings_helper.dart';
 import 'utils/deepseek_api_service.dart';
 import 'pages/library_page.dart';
+import 'pages/login_page.dart';
 import 'utils/algorithm_manager.dart';
 import 'utils/auto_update_service.dart';
 import 'utils/performance_optimizer.dart';
@@ -185,6 +186,7 @@ class _WordFlowAppState extends State<WordFlowApp> with WidgetsBindingObserver {
       routes: {
         '/onboarding': (context) => const OnboardingPage(),
         '/home': (context) => const HomePage(),
+        '/login': (context) => const LoginPage(),
         '/library': (context) => const LibraryPage(),
         '/settings': (context) => ThemeProvider(
           toggleTheme: _toggleTheme,
@@ -241,9 +243,9 @@ class _AppInitializerState extends State<AppInitializer> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<bool>(
-      // 检查用户是否已完成初始设置
-      future: _checkOnboardingStatus(),
+    return FutureBuilder<int>(
+      // 检查应用启动状态
+      future: _getAppStartState(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // 加载中显示简约的启动画面
@@ -257,20 +259,23 @@ class _AppInitializerState extends State<AppInitializer> {
           );
         }
         
-        // 根据是否完成初始设置决定显示的页面
-        if (snapshot.data == true) {
-          return const HomePage();
-        } else {
-          return const OnboardingPage();
+        // 根据状态决定显示的页面
+        switch (snapshot.data) {
+          case 0: // Needs login
+            return const LoginPage();
+          case 1: // Needs onboarding
+            return const OnboardingPage();
+          default: // Logged in and onboarding complete
+            return const HomePage();
         }
       },
     );
   }
 
-  /// 检查用户是否已完成起始页配置
-  /// 返回true表示已完成，false表示需要显示起始页
-  Future<bool> _checkOnboardingStatus() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('onboarding_completed') ?? false;
+  /// 检查应用启动状态
+  /// 返回 0: 需要登录, 1: 需要引导, 2: 进入主页
+  Future<int> _getAppStartState() async {
+    // For now, hardcode to always show login page.
+    return 0;
   }
 }
