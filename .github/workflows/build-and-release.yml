@@ -15,7 +15,9 @@ permissions:
 on:
   push:
     branches:
-      - 'feat/add-login-page*'
+      - 'feat/add-login-page'
+      - 'feat/add-login-page-fix'
+      - 'feat/add-login-page-workflow-fix'
   workflow_dispatch:  # 允许手动触发
 
 jobs:
@@ -25,8 +27,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        ref: 'add-login-page-15886046244164752361'
 
     - name: Setup Java
       uses: actions/setup-java@v4
