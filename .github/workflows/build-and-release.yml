@@ -115,6 +115,11 @@ jobs:
       with:
         flutter-version: '3.27.0'
         channel: 'stable'
+
+    - name: Disable Linux Support
+      run: |
+        flutter config --no-enable-linux-desktop
+        flutter config --enable-web
         
     - name: Install Linux dependencies
       run: |
@@ -125,10 +130,7 @@ jobs:
           libgstreamer1.0-dev \
           libgstreamer-plugins-base1.0-dev \
           libgstreamer-plugins-good1.0-dev
-
-    - name: Enable web
-      run: flutter config --enable-web --no-enable-linux
-
+          
     - name: Get dependencies
       run: flutter pub get
 
