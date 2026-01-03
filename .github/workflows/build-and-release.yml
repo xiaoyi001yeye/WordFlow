@@ -127,7 +127,7 @@ jobs:
           libgstreamer-plugins-good1.0-dev
 
     - name: Enable web
-      run: flutter config --no-enable-linux
+      run: flutter config --enable-web --no-enable-linux
 
     - name: Get dependencies
       run: flutter pub get
